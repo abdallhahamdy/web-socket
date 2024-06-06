@@ -12,12 +12,12 @@ import org.springframework.web.socket.config.annotation.WebSocketMessageBrokerCo
 //@EnableWebSocketMessageBroker: Annotation to allow WS implement to WebSocketMessageBrokerConfigurer.
 public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
 
-    // registerStompEndpoints to select URL to connect with server.
+    // registerStompEndpoints to select URL to connect wi th server.
     // STOMP: Streaming Text Messaging Protocol.
     // STOMP: exchange and transfer data.
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
-        registry.addEndpoint("/connect").withSockJS();
+        registry.addEndpoint("/connect").withSockJS(); // In front side
     }
 
     @Override
