@@ -11,16 +11,16 @@ import org.springframework.stereotype.Controller;
 public class ChatController {
 
     // SimpMessageHeaderAccessor: For Adding Users whose login for first time
-    // Payload like body
+    // Payload as body
     @MessageMapping("/chat.login")
-    @SendTo("/topic")
+    @SendTo("/topic/all")
     public ChatMessage login(@Payload ChatMessage chatMessage, SimpMessageHeaderAccessor headerAccessor){
         headerAccessor.getSessionAttributes().put("username", chatMessage.getSender());
         return chatMessage;
     }
 
     @MessageMapping("/chat.send")
-    @SendTo("/topic")
+    @SendTo("/topic/all")
     public ChatMessage send(@Payload ChatMessage chatMessage){
         return chatMessage;
     }
