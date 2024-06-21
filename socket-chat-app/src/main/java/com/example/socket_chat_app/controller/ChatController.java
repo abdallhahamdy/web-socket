@@ -12,7 +12,7 @@ public class ChatController {
 
     // SimpMessageHeaderAccessor: For Adding Users whose login for first time
     // Payload as body
-    @MessageMapping("/chat.login")
+    @MessageMapping("/chat.logIn")
     @SendTo("/topic/all")
     public ChatMessage login(@Payload ChatMessage chatMessage, SimpMessageHeaderAccessor headerAccessor){
         headerAccessor.getSessionAttributes().put("username", chatMessage.getSender());
