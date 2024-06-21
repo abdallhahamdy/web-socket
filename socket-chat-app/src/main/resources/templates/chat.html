@@ -4,16 +4,16 @@
     <meta charset="UTF-8">
     <title>Chat</title>
 
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com"> <!-- Need Connect Internet -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"> <!-- Need Connect Internet -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet"> <!-- Need Connect Internet -->
     <link rel="stylesheet" href="../static/sheet.css" />
 </head>
 <body>
 
 <!------ Include the above in your HEAD tag ---------->
 
-<div class="chat_window ">
+<div class="chat_window dis ">
     <div class="top_menu">
         <div class="buttons">
             <div class="button close">
@@ -66,7 +66,7 @@
         </div>
     </div>
 </div>
-<div class="background dis">
+<div class="background ">
     <div class="shape"></div>
     <div class="shape"></div>
     <form>
@@ -78,7 +78,12 @@
         <button>Log In</button>
     </form>
 </div>
-</div>
 
+<script
+        src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.4/sockjs.min.js"></script> <!-- Socket Need Connect Internet -->
+<script
+        src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script> <!-- STOMP Need connect Internet -->
+<script src="/js/main.js"></script> <!-- FILE JS -->
 </body>
+
 </html>
