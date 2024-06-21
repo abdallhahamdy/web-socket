@@ -12,8 +12,19 @@
 <body>
 
 <!------ Include the above in your HEAD tag ---------->
+<div id="login" class="background ">
+    <div class="shape"></div>
+    <div class="shape"></div>
+    <form id="userForm">
+        <h3>GO To Chat</h3>
 
-<div class="chat_window dis ">
+        <label for="username">Username</label>
+        <input type="text" placeholder="User Name" id="username">
+
+        <button>Log In</button>
+    </form>
+</div>
+<div id="chat" class="chat_window dis ">
     <div class="top_menu">
         <div class="buttons">
             <div class="button close">
@@ -66,24 +77,12 @@
         </div>
     </div>
 </div>
-<div class="background ">
-    <div class="shape"></div>
-    <div class="shape"></div>
-    <form>
-        <h3>GO To Chat</h3>
-
-        <label for="username">Username</label>
-        <input type="text" placeholder="User Name" id="username">
-
-        <button>Log In</button>
-    </form>
-</div>
 
 <script
         src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.4/sockjs.min.js"></script> <!-- Socket Need Connect Internet -->
 <script
         src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script> <!-- STOMP Need connect Internet -->
-<script src="/js/main.js"></script> <!-- FILE JS -->
+<script src="../static/js/main.js"></script> <!-- FILE JS -->
 </body>
 
 </html>
