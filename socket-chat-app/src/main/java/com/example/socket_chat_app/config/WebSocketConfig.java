@@ -17,7 +17,7 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
     // STOMP: exchange and transfer data.
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
-        registry.addEndpoint("/connect").withSockJS(); // In front side
+        registry.addEndpoint("/connect").setAllowedOriginPatterns("*").withSockJS();
     }
 
     @Override
