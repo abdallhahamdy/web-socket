@@ -2,6 +2,8 @@
 var logInElement = document.querySelector('#login');
 var chatElement = document.querySelector('#chat');
 var userForm = document.querySelector('#userForm');
+var connect = document.querySelector('#connect');
+var mainChat = document.querySelector('#main-chat');
 var userName = null;
 var stomp = null;
 var URL = "http://localhost:8080";
@@ -20,21 +22,33 @@ function connectSocket(event) {
 
 function connectedDone(){
 
+    stomp.subscribe("/topic", sendMessage)
+
     stomp.send("/app/chat.logIn", {},
         JSON.stringify({sender: userName, chatType: 'JOIN'})
     )
-    // app : Is Prefix
-    // chat.logIn : Is Message Mapping In Back End
-    // JSON.stringify : To Send Body For API
 
-    stomp.subscribe("/app/chat.send", sendMessage)
-    // app : Is Prefix
-    // chat.send : Is Message Mapping In Back End
-    // Subscribe : Subscribe This Message When change happens Do Execute sendMessage Function
-}
-
-function sendMessage(){
+    connect.classList.add('dis');
 
 }
 
+function sendMessage(payload){
+    var message = JSON.parse(payload.body)
+    if(message.chatType == 'JOIN'){
+        joinUser(message)
+    }
+}
+function joinUser(message){
+    var li1 = document.createElement('li');
+    var li2 = document.createElement('li');
+    var hr1 = document.createElement('hr');
+    var hr2 = document.createElement('hr');
+    var messageJoin = document.createTextNode(message.sender + ' join');
+    li1.classList.add('status');
+    li1.appendChild(messageJoin)
+    li2.appendChild(hr1)
+    li2.appendChild(li1)
+    li2.appendChild(hr2)
+    mainChat.appendChild(li2);
+}
 userForm.addEventListener('submit', connectSocket)
