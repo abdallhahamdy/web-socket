@@ -5,9 +5,10 @@ var userForm = document.querySelector('#userForm');
 var connect = document.querySelector('#connect');
 var mainChat = document.querySelector('#main-chat');
 var sendDiv = document.querySelector('#sendDiv');
-var userOnline = document.querySelector("#online");
+var main = document.querySelector('#main');
 var userName = null;
 var stomp = null;
+var users = null;
 var URL = "http://localhost:8080";
 
 function connectSocket(event) {
@@ -15,7 +16,6 @@ function connectSocket(event) {
     if(userName) {
         logInElement.classList.add("dis");
         chatElement.classList.remove("dis");
-        userOnline.classList.remove("dis");
         var socket = new SockJS(URL + '/connect');    // Connect With Socket URL With Back End
         stomp = Stomp.over(socket);            // STOMP
         stomp.connect({}, connectedDone)
@@ -90,17 +90,40 @@ function send() {
         document.querySelector('#sms').value = '';
     }
 }
-function listActiveUsers() {
+function listActiveUsers(){
     var xhr = new XMLHttpRequest();
     xhr.open("GET", URL + "/active");
     xhr.setRequestHeader("Content-Type", "application/json");
     xhr.onreadystatechange = function () {
         if (xhr.readyState === 4 && xhr.status === 200) {
-            var json = JSON.parse(xhr.responseText);
-            console.log(json);
+            users = JSON.parse(xhr.responseText);
+            showActiveUser(users)
         }
     };
     xhr.send();
+}
+function showActiveUser(users){
+    document.getElementById('test').remove();
+    var mainDiv = document.createElement('div');
+    mainDiv.classList.add('abso');
+    mainDiv.id = 'test';
+    for (let z=0;z<users.length;z++){
+        var div = document.createElement('div');
+        var span1 = document.createElement('span');
+        span1.classList.add('name-us');
+        var userName = document.createTextNode(users[z].username);
+        span1.appendChild(userName);
+        var span2 = document.createElement('span');
+        var i = document.createElement('i');
+        i.classList.add("fas");
+        i.classList.add("fa-circle");
+        span2.appendChild(i);
+        div.appendChild(span1);
+        div.appendChild(span2);
+        mainDiv.appendChild(div);
+    }
+    main.appendChild(mainDiv)
+
 }
 userForm.addEventListener('submit', connectSocket)
 sendDiv.addEventListener('click', send)
