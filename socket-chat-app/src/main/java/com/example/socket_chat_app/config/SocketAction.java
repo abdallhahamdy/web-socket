@@ -2,6 +2,7 @@ package com.example.socket_chat_app.config;
 
 import com.example.socket_chat_app.model.ChatMessage;
 import com.example.socket_chat_app.model.ChatType;
+import com.example.socket_chat_app.model.Storage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.event.EventListener;
 import org.springframework.messaging.simp.SimpMessageSendingOperations;
@@ -30,6 +31,7 @@ public class SocketAction {
             ChatMessage chatMessage = new ChatMessage();
             chatMessage.setChatType(ChatType.LEAVE);
             chatMessage.setSender(userName);
+            Storage.removeBySession(headerAccessor.getSessionId());
             messageTemplate.convertAndSend("/topic", chatMessage);
         }
     }
